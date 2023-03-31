@@ -1,23 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import { useState } from "react";
 
 function App() {
+  const [books, setBooks] = useState([]);
+
+  const getData = () => {
+    fetch("https://gutendex.com/books")
+      .then((res) => res.json())
+      .then((data) => {
+        setBooks(data.results);
+        console.log(data.results);
+      });
+  };
+
+  const sendData = () => {
+    const data = { array: books };
+    fetch("http://localhost:5000/addBooks", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          alert("books added successfully");
+        }
+      });
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <button onClick={getData}>get data</button>
+      <button onClick={sendData}>send data to database</button>
     </div>
   );
 }
