@@ -1,6 +1,8 @@
 import logo from "./logo.svg";
 import "./App.css";
 import { useState } from "react";
+import { RouterProvider } from "react-router-dom";
+import router from "./Components/Routes";
 
 function App() {
   const [books, setBooks] = useState([]);
@@ -33,6 +35,7 @@ function App() {
 
   return (
     <div className="App">
+      <RouterProvider router={router}></RouterProvider>
       <button onClick={getData}>get data</button>
       <button onClick={sendData}>send data to database</button>
     </div>

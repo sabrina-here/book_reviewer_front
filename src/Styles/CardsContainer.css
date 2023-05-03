@@ -1,0 +1,21 @@
+.cards-container {
+  margin-top: 100px;
+}
+
+/* view all button design */
+.viewAll-btn {
+  border: none;
+  background-color: white;
+}
+
+.viewAll-btn:hover {
+  background-color: aliceblue;
+}
+
+/* fish cards design */
+.book-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: space-around;
+  justify-items: center;
+}
