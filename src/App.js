@@ -36,8 +36,8 @@ function App() {
   return (
     <div className="App">
       <RouterProvider router={router}></RouterProvider>
-      <button onClick={getData}>get data</button>
-      <button onClick={sendData}>send data to database</button>
+      {/* <button onClick={getData}>get data</button>
+      <button onClick={sendData}>send data to database</button> */}
     </div>
   );
 }

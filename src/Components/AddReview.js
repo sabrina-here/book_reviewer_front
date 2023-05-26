@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useRef, useState } from "react";
+import { BooksInfoContext } from "./BooksContext";
 
 function AddReview({ id }) {
   const [reviews, setReviews] = useState({ book_id: id });
+  const { setBookReviews, bookReviews } = useContext(BooksInfoContext);
+  const inputRef = useRef(null);
 
   const handleOnChange = (e) => {
     setReviews({ ...reviews, [e.target.name]: e.target.value });
@@ -22,6 +25,8 @@ function AddReview({ id }) {
       .then((data) => {
         if (data.acknowledged) {
           alert("review added successfully");
+          inputRef.current.value = "";
+          setBookReviews(...bookReviews, reviews);
         }
       });
   };
@@ -38,6 +43,7 @@ function AddReview({ id }) {
             required
             name="reader"
             onChange={handleOnChange}
+            ref={inputRef}
           />
         </div>
         <div
@@ -55,6 +61,7 @@ function AddReview({ id }) {
           name="review"
           onChange={handleOnChange}
           rows="3"
+          ref={inputRef}
         ></textarea>
       </div>
     </div>

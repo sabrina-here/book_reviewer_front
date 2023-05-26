@@ -1,20 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useLoaderData } from "react-router-dom";
 import ReviewBookCard from "./ReviewBookCard";
 import "../Styles/ReviewPage.css";
 import AddReview from "./AddReview";
 import ReviewCard from "./ReviewCard";
+import { BooksInfoContext } from "./BooksContext";
 
 function ReviewPage() {
-  const [bookReviews, setBookReviews] = useState([]);
+  const { bookReviews, setCurrentBook } = useContext(BooksInfoContext);
   const book = useLoaderData();
 
   useEffect(() => {
-    fetch(`http://localhost:5000/reviews/${book.id}`)
-      .then((res) => res.json())
-      .then((data) => setBookReviews(data));
+    setCurrentBook(book);
   }, []);
+
   return (
     <div>
       <Container className="my-2 ">

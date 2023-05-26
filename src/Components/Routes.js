@@ -1,6 +1,7 @@
 import Main from "./Main";
 import Home from "./Home";
 import ReviewPage from "./ReviewPage";
+import ApiPage from "./ApiPage";
 const { createBrowserRouter } = require("react-router-dom");
 
 const router = createBrowserRouter([
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
       {
         path: "/reviewPage",
         element: <ReviewPage></ReviewPage>,
+      },
+      {
+        path: "/apiPage",
+        element: <ApiPage></ApiPage>,
       },
       {
         path: "/reviewPage/:id",

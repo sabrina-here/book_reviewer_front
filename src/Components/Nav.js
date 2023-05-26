@@ -32,6 +32,16 @@ function Nav() {
                   Home
                 </Link>
               </li>
+              <li className="nav-item">
+                <Link
+                  to="/apiPage"
+                  className="nav-link active"
+                  aria-current="page"
+                  href="#"
+                >
+                  API
+                </Link>
+              </li>
             </ul>
             <form className="d-flex" role="search">
               <input

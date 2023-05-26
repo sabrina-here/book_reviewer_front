@@ -17,10 +17,10 @@ function ReviewBookCard({ book }) {
           >
             <img src={bookImage} className="card-img-top img-fluid" alt="" />
             <div className="card-body">
-              <h5 className="card-title ">{title}</h5>
-              {/* <p>
-            <small>weight: {weight}gm</small>
-          </p> */}
+              <h5 className="card-title ">
+                {title.length > 26 ? title.slice(26) : title}
+              </h5>
+
               <p className="card-text fw-bold text-secondary">
                 Author: {author}
               </p>
