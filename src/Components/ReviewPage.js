@@ -8,11 +8,15 @@ import ReviewCard from "./ReviewCard";
 import { BooksInfoContext } from "./BooksContext";
 
 function ReviewPage() {
-  const { bookReviews, setCurrentBook } = useContext(BooksInfoContext);
+  const [bookReviews, setBookReviews] = useState([]);
+  const { setCurrentBook } = useContext(BooksInfoContext);
   const book = useLoaderData();
 
   useEffect(() => {
     setCurrentBook(book);
+    fetch(`http://localhost:5000/reviews/${book.id}`)
+      .then((res) => res.json())
+      .then((data) => setBookReviews(data));
   }, []);
 
   return (

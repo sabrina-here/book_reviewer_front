@@ -1,14 +1,31 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useRef, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+
+// https://gutendex.com/books/?search=dickens
 
 function Nav() {
+  const [searchedName, setSearchedName] = useState("");
+  const navigate = useNavigate();
+  const inputRef = useRef(null);
+
+  const handleSetSearchedName = (event) => {
+    setSearchedName(event.target.value);
+  };
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    console.log(searchedName);
+    navigate(`/searchedBooksPage/${searchedName}`);
+    inputRef.current.value = "";
+  };
+
   return (
     <div>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
-          <a className="navbar-brand text-success" href="#">
+          <Link className="navbar-brand text-success" to="/">
             Book Reviewer
-          </a>
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -49,8 +66,14 @@ function Nav() {
                 type="search"
                 placeholder="Search by name/author/type"
                 aria-label="Search"
+                onChange={handleSetSearchedName}
+                ref={inputRef}
               />
-              <button className="btn btn-outline-success" type="submit">
+              <button
+                className="btn btn-outline btn-outline-success"
+                onClick={handleSearch}
+                type="submit"
+              >
                 Search
               </button>
             </form>
@@ -58,7 +81,6 @@ function Nav() {
         </div>
       </nav>
     </div>
-    // const fish = useLoaderData();
   );
 }
 

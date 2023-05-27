@@ -2,6 +2,7 @@ import Main from "./Main";
 import Home from "./Home";
 import ReviewPage from "./ReviewPage";
 import ApiPage from "./ApiPage";
+import SearchedBooksPage from "./SearchedBooksPage";
 const { createBrowserRouter } = require("react-router-dom");
 
 const router = createBrowserRouter([
@@ -26,6 +27,12 @@ const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`https://gutendex.com/books/${params.id}`),
         element: <ReviewPage></ReviewPage>,
+      },
+      {
+        path: "/searchedBooksPage/:name",
+        loader: ({ params }) =>
+          fetch(`https://gutendex.com/books/?search=${params.name}`),
+        element: <SearchedBooksPage></SearchedBooksPage>,
       },
     ],
   },
